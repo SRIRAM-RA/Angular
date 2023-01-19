@@ -1,0 +1,45 @@
+<!-- <p>child2 works!</p> -->
+<div class="outerbox">
+  <div class="child-2-outer">
+    <div class="data-time">
+      <h2><span>DATE</span> <span class="symbol"> & </span> <span>TIME</span></h2>
+      <div class="pipes">
+        <button type="button" [class.active]="datepipe == 'default'" (click)="datepipe = 'default'">Default</button>
+        <button type="button" [class.active]="datepipe == 'shortdate'" (click)="datepipe = 'shortdate'">Short Date</button>
+        <button type="button" [class.active]="datepipe == 'fulldate'" (click)="datepipe = 'fulldate'">Full Date</button>
+        <button type="button" [class.active]="datepipe == 'shorttime'" (click)="datepipe = 'shorttime'">Short Time</button>
+        <button type="button" [class.active]="datepipe == 'fulltime'" (click)="datepipe = 'fulltime'">Full Time</button>
+      </div>
+      <div [ngSwitch]="datepipe">
+        <div *ngSwitchCase="'default'" class="default"><h3>Default :</h3><span>&nbsp;</span>{{datemessage}}</div>
+        <div *ngSwitchCase="'shortdate'" class="default"><h3>Short Date :</h3><span>&nbsp;</span>{{datemessage | date: 'shortDate'}}</div>
+        <div *ngSwitchCase="'fulldate'" class="default"><h3>Full Date :</h3><span>&nbsp;</span>{{datemessage | date: 'fullDate'}}</div>
+        <div *ngSwitchCase="'shorttime'" class="default"><h3>Short Time :</h3><span>&nbsp;</span>{{datemessage | date: 'shortTime'}}</div>
+        <div *ngSwitchCase="'fulltime'" class="default"><h3>Full Time :</h3><span>&nbsp;</span>{{datemessage | date: 'fullTime'}}</div>
+      </div>
+    </div>
+  </div>
+  <h1 class="head">JSON <span class="symbol">Cards</span></h1>
+  <div class="json-cards-outerbox">
+    <div class="json-card" *ngFor="let data of jsondata, let i = index" [attr.id] = 'i'>
+      <div class="img">
+        <!-- <fa-icon [icon]="avatar"></fa-icon> -->
+        <!-- <img src="https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png"/> -->
+        <br/>
+      </div>
+      <div class="card-detail">
+        <h2>{{data.firstName}}&nbsp;<span class="lastname">{{data.lastName}}</span></h2>
+        <h3>{{data.role | titlecase}}</h3>
+      </div>
+      <!-- <hr id="#profileline"/> -->
+      <div class="profiles" >
+        <a href="{{data.fb}}"><img src="../../assets/fb.png" class="icon"></a>
+        <a href="{{data.linkedIn}}"><img src="../../assets/linkedin.png" class="icon"></a>
+        <a href="{{data.twitter}}"><img src="../../assets/twitter.png" class="icon"></a>
+      </div>
+    </div>
+  </div>
+  <br/><br/><br/><br/><br/><br/>
+</div>
+
+

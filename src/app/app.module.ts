@@ -1,32 +1,26 @@
-import { DataService } from './signup/data.service';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { NotfoundComponent } from './notfound/notfound.component';
-import { TodoComponent } from './todo/todo.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
+import { Child1Component } from './child1/child1.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsModule } from '@angular/forms';
+import { Child2Component } from './child2/child2.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    NotfoundComponent,
-    TodoComponent,
-    LoginComponent,
-    SignupComponent
+    Child1Component,
+    Child2Component
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    AppRoutingModule
+    FontAwesomeModule,
+    FormsModule
   ],
-  providers: [DataService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,80 @@
+<form ngForm name="contactform" #contactform="ngForm" (ngSubmit)="submit(contactform)" *ngIf="showhideform">
+  <h1>Contact form</h1>
+  <div class="name">
+    <label for="f_name">Your Name</label>
+    <div class="name-inner-box">
+      <input type="text" id="f_name" class="name-input" required placeholder="First Name" [(ngModel)]="parentMessage.fname" name="f_name" ngModel #f_name="ngModel">
+      <section *ngIf="showvalidations">
+        <fa-icon [icon]="check" class="correct" *ngIf="validatestate"></fa-icon>
+        <fa-icon [icon]="check" class="wrong" *ngIf="!validatestate"></fa-icon>
+      </section>
+      <input type="text" id="l_name" class="name-input" required placeholder="Last Name" [(ngModel)]="parentMessage.lname" name="l_name" ngModel #l_name="ngModel">
+      <section *ngIf="showvalidations">
+        <fa-icon [icon]="check" class="correct" *ngIf="validatestate"></fa-icon>
+        <fa-icon [icon]="check" class="wrong" *ngIf="!validatestate"></fa-icon>
+      </section>
+    </div>
+  </div>
+  <div>
+    <label>Your E-mail</label>
+    <input type="email" placeholder="e.g: sample@gmail.com" id="email" name="email" ngModel #email="ngModel" [(ngModel)]="parentMessage.email">
+    <section *ngIf="showvalidations">
+      <fa-icon [icon]="check" class="correct" *ngIf="emailvalidstate"></fa-icon>
+      <fa-icon [icon]="check" class="wrong" *ngIf="!emailvalidstate"></fa-icon>
+    </section>
+  </div>
+  <div>
+    <label>Phone*</label>
+    <input type="text" placeholder="+91 9998887771" id="phone" name="phone" ngModel #phone="ngModel" minlength="10" maxlength="10" [(ngModel)]="parentMessage.phone">
+    <section *ngIf="showvalidations">
+      <fa-icon [icon]="check" class="correct" *ngIf="phonevalidstate"></fa-icon>
+      <fa-icon [icon]="check" class="wrong" *ngIf="!phonevalidstate"></fa-icon>
+    </section>
+  </div>
+  <p class="wrong" *ngIf="phone.touched && !phone.valid">
+    <span *ngIf="phone.hasError('minlength')">Enter 10 numbers</span>
+  </p>
+  <div>
+    <label>Message Subject*</label>
+    <div class="dropdown"><input ngModel id="opt_choice" name="opt_choice" #opt_choice="ngModel" placeholder="--Select Option--"  [(ngModel)]="dropdownchoice" (click)="showdrop()"><fa-icon [icon]="icon" class="dropdown-icon" (click)="showdrop()"></fa-icon></div>
+    <section *ngIf="showvalidations">
+      <fa-icon [icon]="check" class="correct" *ngIf="optionvalidstate"></fa-icon>
+      <fa-icon [icon]="check" class="wrong" *ngIf="!optionvalidstate"></fa-icon>
+    </section>
+    <div class="dropdown-cont" *ngIf="!showdropdown">
+      <a (click)="updatevalue($event)" *ngFor="let data of parentMessage.options, let i = index" [attr.data-index]="i">{{data}}</a>
+      <!-- <a id="others1" (click)="updatevalue($event)">Others1</a> -->
+    </div>
+  </div>
+  <div>
+    <label>Message*</label>
+    <textarea cols="59" rows="10" placeholder="Enter the message here.." [(ngModel)]="parentMessage.message" id="message" name="message" ngModel #message="ngModel"></textarea>
+    <section *ngIf="showvalidations">
+      <fa-icon [icon]="check" class="correct" *ngIf="msgvalidstate"></fa-icon>
+      <fa-icon [icon]="check" class="wrong" *ngIf="!msgvalidstate"></fa-icon>
+    </section>
+  </div>
+  <br/>
+  <hr />
+  <br/>
+  <div class="validate-btns">
+    <button type="submit" *ngIf="formclear">SUBMIT FORM</button>
+    <button type="button" *ngIf="!formclear" (click)="validate(contactform)">VALIDATE FORM</button>
+  </div>
+  <div class="err-msg" *ngIf="!validatestate || !emailvalidstate || !phonevalidstate || !optionvalidstate || !msgvalidstate">
+    <h2>Error Msg</h2>
+    <h3 class="wrong" *ngIf="!validatestate">Check your Name</h3>
+    <h3 class="wrong" *ngIf="!emailvalidstate">Check the E-mail entered</h3>
+    <h3 class="wrong" *ngIf="!phonevalidstate">Check the Phone Number entered</h3>
+    <h3 class="wrong" *ngIf="!optionvalidstate">Select an proper Message option</h3>
+    <h3 class="wrong" *ngIf="!msgvalidstate">Enter some Messagee</h3>
+  </div>
+</form>
+
+<div class="form-success" *ngIf="!showhideform">
+  <h1><span><fa-icon [icon]="check" class="correct"></fa-icon></span>&nbsp;Form Submitted Successfully.</h1>
+  <!-- <button>asdsad</button> -->
+  <button type="button" class="do-over" (click)="reload()">Submit another response</button>
+</div>
+
+<br/><br/>

@@ -1,6 +1,13 @@
+<div class="navbar">
+  <h2>Toggle between Components</h2>
+  <div class="tog-btns">
+    <button type="button" [class.active]="component == 'form'" (click)="component='form'">Form component</button>
+    <button type="button" [class.active]="component == 'date'" (click)="component='date'">Date & Time</button>
+  </div>
+</div>
 
-<!-- <app-navbar></app-navbar> -->
-<!-- <app-notfound></app-notfound> -->
-<!-- <app-todo></app-todo> -->
+<div [ngSwitch]="component">
+  <app-child1 [parentMessage] = "formdata" *ngSwitchCase="'form'"></app-child1>
+  <app-child2 [datemessage] = "datemessage" [jsondata]="json" *ngSwitchCase="'date'"></app-child2>
+</div>
 
-<router-outlet> </router-outlet>
