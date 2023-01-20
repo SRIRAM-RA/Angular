@@ -20,22 +20,29 @@
     </div>
   </div>
   <h1 class="head">JSON <span class="symbol">Cards</span></h1>
+  <div class="searchbar">
+    <input type="search" placeholder="Search User by Name" (focus)="searchbtn()" id="searchbox" #searchbox [(ngModel)]="searchtext" (change)="updatesearchvalue($event)">
+    <!-- <button type="button" class="search-btn" *ngIf="showsearchbtn" (click)="getdata()">Search</button> -->
+  </div>
+  <p class="note" *ngIf="note">Note: This is a Name based search. (The search results may also include the results found in E-mail address as well)</p>
   <div class="json-cards-outerbox">
-    <div class="json-card" *ngFor="let data of jsondata, let i = index" [attr.id] = 'i'>
+    <div class="json-card" *ngFor="let data of jsondata | filter:searchtext">
       <div class="img">
         <!-- <fa-icon [icon]="avatar"></fa-icon> -->
         <!-- <img src="https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png"/> -->
         <br/>
       </div>
       <div class="card-detail">
-        <h2>{{data.firstName}}&nbsp;<span class="lastname">{{data.lastName}}</span></h2>
-        <h3>{{data.role | titlecase}}</h3>
+        <!-- <h4 class="idvalue">{{i+1}}</h4> -->
+        <!-- <h2>{{data.name}}&nbsp;</h2> -->
+        <h2><span class="lastname">{{data.username | titlecase}}</span></h2>
+        <h3>{{data.email}}</h3>
       </div>
       <!-- <hr id="#profileline"/> -->
       <div class="profiles" >
-        <a href="{{data.fb}}"><img src="../../assets/fb.png" class="icon"></a>
-        <a href="{{data.linkedIn}}"><img src="../../assets/linkedin.png" class="icon"></a>
-        <a href="{{data.twitter}}"><img src="../../assets/twitter.png" class="icon"></a>
+        <a href="https://www.google.com/"><img src="../../assets/fb.png" class="icon"></a>
+        <a href="https://www.google.com/"><img src="../../assets/linkedin.png" class="icon"></a>
+        <a href="https://www.google.com/"><img src="../../assets/twitter.png" class="icon"></a>
       </div>
     </div>
   </div>

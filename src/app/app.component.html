@@ -8,6 +8,6 @@
 
 <div [ngSwitch]="component">
   <app-child1 [parentMessage] = "formdata" *ngSwitchCase="'form'"></app-child1>
-  <app-child2 [datemessage] = "datemessage" [jsondata]="json" *ngSwitchCase="'date'"></app-child2>
+  <app-child2 [datemessage] = "datemessage" [jsondata]="json" *ngSwitchCase="'date'" (newEvent)="getdata($event)"></app-child2>
 </div>
 
